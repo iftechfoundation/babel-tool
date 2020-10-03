@@ -78,6 +78,10 @@ ifiction.a: $(ifiction_objs)
 babel_functions.a: $(babel_functions)
 	ar -r babel_functions.a $^
 
+.PHONY: test
+test:
+	$(MAKE) -C test
+
 dist:
 	cut -c0-31 MANIFEST | zip babel.zip -@
 
