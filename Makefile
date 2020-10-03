@@ -15,21 +15,28 @@
 #
 # Note that this is a GNU makefile, and may not work with other makes
 #
-# Comment/uncomment the following lines to make the program work
+# Add more checks for the OS/Platform to automatically switch
+# compiler/linker settings. For temporary fixes just edit...
 
+ifeq ($(shell uname),Linux)
+CC=gcc -g -Wall
+OBJ=.o
+BABEL_LIB=babel.a
+BABEL_FLIB=babel_functions.a
+IFICTION_LIB=ifiction.a
+OUTPUT_BABEL=-o babel
+else
 CC=bcc32
 OBJ=.obj
 BABEL_LIB=babel.lib
 IFICTION_LIB=ifiction.lib
 BABEL_FLIB=babel_functions.lib
 OUTPUT_BABEL=
+endif
 
-#CC=gcc -g
-#OBJ=.o
-#BABEL_LIB=babel.a
-#BABEL_FLIB=babel_functions.a
-#IFICTION_LIB=ifiction.a
-#OUTPUT_BABEL=-o babel
+ifndef VERBOSE
+MAKEFLAGS+=--no-print-directory
+endif
 
 treaty_objs = zcode${OBJ} magscrolls${OBJ} blorb${OBJ} glulx${OBJ} hugo${OBJ} agt${OBJ} level9${OBJ} executable${OBJ} advsys${OBJ} tads${OBJ} tads2${OBJ} tads3${OBJ} adrift${OBJ} alan${OBJ}
 bh_objs = babel_handler${OBJ} register${OBJ} misc${OBJ} md5${OBJ} ${treaty_objs}
@@ -37,7 +44,7 @@ ifiction_objs = ifiction${OBJ} register_ifiction${OBJ}
 babel_functions =  babel_story_functions${OBJ} babel_ifiction_functions${OBJ} babel_multi_functions${OBJ}
 babel_objs = babel${OBJ} $(BABEL_FLIB) $(IFICTION_LIB) $(BABEL_LIB)
 
-babel: ${babel_objs} 
+babel: ${babel_objs}
 	${CC} ${OUTPUT_BABEL} ${babel_objs}
 
 %${OBJ} : %.c
@@ -71,5 +78,8 @@ ifiction.a: $(ifiction_objs)
 babel_functions.a: $(babel_functions)
 	ar -r babel_functions.a $^
 
-dist: 
+dist:
 	cut -c0-31 MANIFEST | zip babel.zip -@
+
+clean:
+	-rm *${OBJ} babel *.lib *.a
