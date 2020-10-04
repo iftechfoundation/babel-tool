@@ -1823,4 +1823,4 @@ void main(int argc, char **argv)
 }
 
 
-#endif
+#endif /* TADS_TEST */
