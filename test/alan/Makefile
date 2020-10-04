@@ -4,5 +4,6 @@ include ../Makefile.boilerplate
 
 .PHONY: $(CURDIR)
 $(CURDIR):
-	../../babel -ifid alan.a3c > output
+	../../babel -ifid valid.a3c > output
+	../../babel -ifid invalid.a3c >> output
 	$(VERIFY)
