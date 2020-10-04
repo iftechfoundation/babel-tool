@@ -19,23 +19,30 @@
 # compiler/linker settings. For temporary fixes just edit...
 
 ifeq ($(shell uname),Linux)
-CC=gcc -g -Wall
-OBJ=.o
-BABEL_LIB=babel.a
-BABEL_FLIB=babel_functions.a
-IFICTION_LIB=ifiction.a
-OUTPUT_BABEL=-o babel
+  CC=gcc -g -Wall
+  OBJ=.o
+  BABEL_LIB=babel.a
+  BABEL_FLIB=babel_functions.a
+  IFICTION_LIB=ifiction.a
+  OUTPUT_BABEL=-o babel
+else ifeq ($(shell uname),Darwin)
+  CC=cc -g -Wall
+  OBJ=.o
+  BABEL_LIB=babel.a
+  BABEL_FLIB=babel_functions.a
+  IFICTION_LIB=ifiction.a
+  OUTPUT_BABEL=-o babel
 else
-CC=bcc32
-OBJ=.obj
-BABEL_LIB=babel.lib
-IFICTION_LIB=ifiction.lib
-BABEL_FLIB=babel_functions.lib
-OUTPUT_BABEL=
+  CC=bcc32
+  OBJ=.obj
+  BABEL_LIB=babel.lib
+  IFICTION_LIB=ifiction.lib
+  BABEL_FLIB=babel_functions.lib
+  OUTPUT_BABEL=
 endif
 
 ifndef VERBOSE
-MAKEFLAGS+=--no-print-directory
+  MAKEFLAGS+=--no-print-directory
 endif
 
 treaty_objs = zcode${OBJ} magscrolls${OBJ} blorb${OBJ} glulx${OBJ} hugo${OBJ} agt${OBJ} level9${OBJ} executable${OBJ} advsys${OBJ} tads${OBJ} tads2${OBJ} tads3${OBJ} adrift${OBJ} alan${OBJ}
