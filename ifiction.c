@@ -181,7 +181,9 @@ static void ifiction_validate_tag(struct XMLTag *xtg, struct ifiction_info *xti,
                                         parent->tag);
                                err_h(ebuf,ectx);
                              }
-   else parent->occurences[i]=1;
+  else {
+   parent->occurences[i]=1;
+  }
  }
  for(i=0;required[i];i+=2)
  if (strcmp(required[i],xtg->tag)==0 && !xtg->rocurrences[i])
