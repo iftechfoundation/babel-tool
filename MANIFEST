@@ -1,7 +1,7 @@
 adrift.c                        Treaty of Babel module for Adrift
 advsys.c                        Treaty of Babel module for AdvSys
-alan.c                          Treaty of Babel module for Alan
 agt.c                           Treaty of Babel module for AGT
+alan.c                          Treaty of Babel module for Alan
 babel.h                         babel program header
 md5.h                           L. Peter Deutsch's md5 header
 modules.h                       babel module registry
@@ -21,7 +21,7 @@ ifiction.h                      babel ifiction header
 ifiction.c                      babel ifiction api
 level9.c                        Treaty of Babel module for level9
 magscrolls.c                    Magnetic Scrolls treaty module
-makefile                        Provisional makefile
+Makefile                        Provisional makefile
 md5.c                           L. Peter Deutsch's md5 implementation
 misc.c                          babel memory allocator
 register.c                      babel module registry
@@ -48,4 +48,4 @@ babel-get/get_dir.c             Directory source
 babel-get/get_ifiction.c        ifiction source
 babel-get/get_story.c           story file source
 babel-get/get_url.c             URL source
-babel-get/makefile              Makefile for babel-get
+babel-get/Makefile              Makefile for babel-get
