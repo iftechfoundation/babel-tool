@@ -93,4 +93,5 @@ dist:
 	cut -c0-31 MANIFEST | zip babel.zip -@
 
 clean:
-	-rm *${OBJ} babel *.lib *.a
+	-rm -f *${OBJ} babel *.lib *.a
+	$(MAKE) -C test clean

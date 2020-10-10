@@ -9,4 +9,4 @@ $(CURDIR):
 	$(VERIFY)
 
 clean:
-	-rm output
+	-rm -f output
