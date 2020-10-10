@@ -33,6 +33,7 @@ tads3.c                         Treaty of Babel module for tads3
 zcode.c                         Treaty of Babel module for zcode
 README.md                       documentation
 MANIFEST                        this file
+LICENSE                         CC license note
 extras/babel-cache.pl           Perl demo of babel interaction
 extras/babel-infocom.pl         Special bundler for the infocom corpus
 extras/babel-list.c             Babel API demo
