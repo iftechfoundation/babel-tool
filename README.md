@@ -29,6 +29,10 @@ The following files are Copyright (C) 1999, 2000, 2002 Aladdin Enterprises:
 
 And are used in accordance with their licenses.
 
+The following files are Copyright 2006 by Emily Short:
+
+- test/bronze/Bronze.zblorb
+
 All other files are (c) 2006 by L. Ross Raszewski and are released under
 the Creative Commons Attribution 4.0 License.
 
