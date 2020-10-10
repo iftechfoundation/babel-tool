@@ -7,3 +7,6 @@ $(CURDIR):
 	../../babel -ifid valid.a3c > output
 	../../babel -ifid invalid.a3c >> output
 	$(VERIFY)
+
+clean:
+	-rm output
