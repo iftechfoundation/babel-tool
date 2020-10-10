@@ -49,3 +49,11 @@ babel-get/get_ifiction.c        ifiction source
 babel-get/get_story.c           story file source
 babel-get/get_url.c             URL source
 babel-get/Makefile              Makefile for babel-get
+test/Makefile                   Makefile for test suite
+test/Makefile.boilerplate       Common definitions for test Makefiles
+test/alan/Makefile              Makefile for alan test
+test/alan/expected              Expected alan test output
+test/alan/invalid.a3c           Alan test file
+test/alan/valid.a3c             Alan test file
+test/alan/valid.a3r             Alan test file
+
