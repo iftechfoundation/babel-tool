@@ -164,25 +164,29 @@ static void ifiction_validate_tag(struct XMLTag *xtg, struct ifiction_info *xti,
  struct XMLTag *parent=xtg->next;
  if (parent)
  {
- for(i=0;leaf_tags[i];i++)
-  if (strcmp(parent->tag,leaf_tags[i])==0)
+  for(i=0;leaf_tags[i];i++) {
+   if (strcmp(parent->tag,leaf_tags[i])==0)
    {
     sprintf(ebuf, "Error: (line %d) Tag <%s> is not permitted within tag <%s>",
         xtg->beginl,xtg->tag,parent->tag);
     err_h(ebuf,ectx);
+   }
+  }
+  for(i=0;required[i];i+=2) {
+   if (strcmp(required[i],parent->tag)==0 && strcmp(required[i+1],xtg->tag)==0)
+    parent->rocurrences[i]=1;
+  }
+  for(i=0;one_per[i];i++) {
+   if (strcmp(one_per[i],xtg->tag)==0) {
+    if (parent->occurences[i]) { 
+     sprintf(ebuf,"Error: (line %d) Found more than one <%s> within <%s>",xtg->beginl,xtg->tag,
+         parent->tag);
+     err_h(ebuf,ectx);
     }
- for(i=0;required[i];i+=2)
- if (strcmp(required[i],parent->tag)==0 && strcmp(required[i+1],xtg->tag)==0)
-  parent->rocurrences[i]=1;
- for(i=0;one_per[i];i++)
- if (strcmp(one_per[i],xtg->tag)==0)
-  if (parent->occurences[i]) { 
-                               sprintf(ebuf,"Error: (line %d) Found more than one <%s> within <%s>",xtg->beginl,xtg->tag,
-                                        parent->tag);
-                               err_h(ebuf,ectx);
-                             }
-  else {
-   parent->occurences[i]=1;
+    else {
+     parent->occurences[i]=1;
+    }
+   }
   }
  }
  for(i=0;required[i];i+=2)
