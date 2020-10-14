@@ -95,3 +95,6 @@ dist:
 clean:
 	-rm -f *${OBJ} babel *.lib *.a
 	$(MAKE) -C test clean
+
+testclean:
+	$(MAKE) -C test clean
