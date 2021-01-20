@@ -45,24 +45,25 @@ static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, i
   else
     {
       /*
-        Alan v3 stores IFIDs in the story file in the following format:
-
-        ACodeHeader[48] - Aword address to the IFID table
-        IFID-table: any number of tuples containing
-        - Aword address to name of IFID
-        - Aword address to value
-        The table is terminated with -1
-
-        The IFID named IFID is always the first.
+        Alan v3 stores IFIDs in the story file in a format that might differ between versions.
+        So just scan for "UUID://"
       */
-      byte *memory = (byte *)story_file;
+      int32 i, j;
 
-      ASSERT_OUTPUT_SIZE(45);
-      int32 ifid_table_address = read_alan_int_at((byte *)&memory[48*4]);
-      int32 ifid_value_address = read_alan_int_at((byte *)&memory[(ifid_table_address+1)*4]);
-      strncpy(output, (char *)&memory[ifid_value_address*4], 45);
-
-      return VALID_STORY_FILE_RV;
+      for(i=0;i<extent;i++) if (memcmp((char *)story_file+i,"UUID://",7)==0) break;
+      if (i<extent) /* Found explicit IFID */
+        {
+          for(j=i+7;j<extent && ((char *)story_file)[j]!='/';j++);
+          if (j<extent)
+            {
+              i+=7;
+              ASSERT_OUTPUT_SIZE(j-i);
+              memcpy(output,(char *)story_file+i,j-i);
+              output[j-i]=0;
+              return VALID_STORY_FILE_RV;
+            }
+        }
+      return INCOMPLETE_REPLY_RV;
     }
 }
 
