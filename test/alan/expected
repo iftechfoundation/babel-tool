@@ -1,3 +1,8 @@
-IFID: UUID://c065a752-a476-a252-731f-e9fe96fcdc6d//
+Valid:
+IFID: c065a752-a476-a252-731f-e9fe96fcdc6d
+Invalid:
 Warning: Story format could not be positively identified. Guessing executable
 IFID: FF8B8EB5AB8A5173FF2D5313B2E8FCA9
+V3 without UUID
+Warning: Story format could not be positively identified. Guessing executable
+IFID: CA6492730DCBA6F568071157F93C1945
