@@ -15,7 +15,7 @@
  *
  */
 
-#define BABEL_VERSION "0.2b"
+#define BABEL_VERSION "0.3"
 
 #include "treaty.h"
 #include "babel_handler.h"
