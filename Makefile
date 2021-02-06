@@ -90,7 +90,7 @@ test:
 	$(MAKE) -C test
 
 dist:
-	cut -c0-31 MANIFEST | zip babel.zip -@
+	cut -c1-31 MANIFEST | perl -p -e "s/ //g" | zip babel.zip -@
 
 clean:
 	-rm -f *${OBJ} babel *.lib *.a
