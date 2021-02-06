@@ -25,7 +25,8 @@ md5.h
 And are used in accordance with their licenses.
 
 All other files are (c) 2006 by L. Ross Raszewski and are released under
-the Creative Commons Attribution2.5 License.
+the Creative Commons Attribution2.5 License and the Perl Artistic
+License as specified below:  
 
 To view a copy of this license, visit
 http://creativecommons.org/licenses/by/2.5/ or send a letter to
@@ -72,3 +73,5 @@ may wish to use babel_handler, which provides a framework for loading a
 story file, selecting the proper treaty modules, and seamlessly handling
 blorb-wrapped files.
 
+
+----

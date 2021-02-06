@@ -3,7 +3,10 @@
  *
  * This file depends on treaty_builder.h
  *
- * This file is public domain, but note that any changes to this file
+ * This file has been released into the public domain by its author.
+* The author waives all of his rights to the work
+* worldwide under copyright law to the maximum extent allowed by law
+* , but note that any changes to this file
  * may render it noncompliant with the Treaty of Babel
  */
 
@@ -17,10 +20,10 @@
 #include <ctype.h>
 #include <stdio.h>
 
-static int32 read_alan_int(unsigned char *from)
+static uint32 read_alan_int(unsigned char *from)
 {
- return ((unsigned long int) from[3])| ((unsigned long int)from[2] << 8) |
-       ((unsigned long int) from[1]<<16)| ((unsigned long int)from[0] << 24);
+ return ((uint32) from[3])| ((uint32)from[2] << 8) |
+       ((uint32) from[1]<<16)| ((uint32)from[0] << 24);
 }
 static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, int32 output_extent)
 {
@@ -40,15 +43,17 @@ static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, i
       the file
    * Locate the checksum and verify that it is correct
 */
-static int32 claim_story_file(void *story_file, int32 extent)
+static int32 claim_story_file(void *story_file, int32 exten)
 {
  unsigned char *sf = (unsigned char *) story_file;
- int32 bf, i, crc=0;
- if (extent < 160) return INVALID_STORY_FILE_RV;
+ uint32 extent=(uint32)exten;
+ uint32 bf;
+ uint32 i, crc=0;
+ if (exten < 160) return INVALID_STORY_FILE_RV;
  if (memcmp(sf,"ALAN",4))
  { /* Identify Alan 2.x */
- bf=read_alan_int(sf+4);
- if (bf > extent/4) return INVALID_STORY_FILE_RV;
+ bf=(uint32) read_alan_int(sf+4);
+ if ( bf > extent/4) return INVALID_STORY_FILE_RV;
  for (i=24;i<81;i+=4)
  if (read_alan_int(sf+i) > extent/4) return INVALID_STORY_FILE_RV;
  for (i=160;i<(bf*4);i++)
@@ -58,7 +63,7 @@ static int32 claim_story_file(void *story_file, int32 extent)
  }
  else
  { /* Identify Alan 3 */
-   bf=read_alan_int(sf+12);
+   bf=(uint32) read_alan_int(sf+12);
    if (bf > (extent/4)) return INVALID_STORY_FILE_RV;
    for (i=184;i<(bf*4);i++)
     crc+=sf[i];
