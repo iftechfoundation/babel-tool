@@ -816,6 +816,10 @@ static int32 synth_ifiction(valinfo *vals, int tads_version,
         ifid_val = default_ifid;
         ifid_len = strlen(default_ifid);
     }
+    else
+    {
+        return NO_REPLY_RV;
+    }
 
     /* write the header, and start the <identification> section */
     write_ifiction_z(
