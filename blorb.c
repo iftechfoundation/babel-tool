@@ -99,11 +99,14 @@ static int32 blorb_get_resource(void *blorb_file, int32 extent, char *rid, int32
  }
  return NO_REPLY_RV;
 }
+
+#if 0  /* blorb_get_story_file is not currently used */
 static int32 blorb_get_story_file(void *blorb_file, int32 extent, uint32 *begin, uint32 *output_extent)
 {
  return blorb_get_resource(blorb_file, extent, "Exec", 0, begin, output_extent);
 
 }
+#endif /* 0 */
 
 static int32 get_story_extent(void *blorb_file, int32 extent)
 {
