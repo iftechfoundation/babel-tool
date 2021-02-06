@@ -89,7 +89,7 @@ static bool crc_is_correct(byte *story_file, int32 size_in_awords) {
   the file
   * Locate the checksum and verify that it is correct
   */
-static uint32 claim_story_file(void *story_file, int32 extent_in_bytes)
+static int32 claim_story_file(void *story_file, int32 extent_in_bytes)
 {
   byte *sf = (byte *) story_file;
   uint32 size_in_awords, i;
