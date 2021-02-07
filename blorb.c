@@ -94,6 +94,8 @@ static int32 blorb_get_resource(void *blorb_file, int32 extent, char *rid, int32
    i=read_int((char *)ridx+(j*12)+8);
    *begin=i+8;
    *output_extent=read_int((char *)blorb_file+i+4);
+   if (*begin > extent || *begin + *output_extent > extent)
+     return NO_REPLY_RV;
    return 1;
   }
  }
