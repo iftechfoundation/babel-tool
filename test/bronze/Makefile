@@ -10,7 +10,7 @@ $(CURDIR):
 	../../babel -ifiction Bronze.zblorb >> output
 	diff 1810847C-0DC7-44D5-94EF-313A3E7AF257.iFiction expected.iFiction >> output
 	../../babel -cover Bronze.zblorb >> output
-	cmp 1810847C-0DC7-44D5-94EF-313A3E7AF257.jpg expected.jpg
+	cmp 1810847C-0DC7-44D5-94EF-313A3E7AF257.jpg expected.jpg >> output
 	$(VERIFY)
 
 clean:
