@@ -57,6 +57,10 @@ test/alan/expected              Expected alan test output
 test/alan/invalid.a3c           Alan test file
 test/alan/valid.a3c             Alan test file
 test/alan/valid.a3r             Alan test file
+test/alan/withoutUUID.a3c       Alan test file
+test/twine/Makefile             Makefile for Twine test
+test/twine/Test-Game.html       Twine test file
+test/twine/expected             Expected Twine test output
 test/bronze/Makefile            Makefile for Bronze test
 test/bronze/expected            Expected Bronze test output
 test/bronze/expected.iFiction   Expected Bronze iFiction file
