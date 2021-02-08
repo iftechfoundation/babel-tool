@@ -90,7 +90,8 @@ test:
 	$(MAKE) -C test
 
 dist:
-	cut -c1-31 MANIFEST | perl -p -e "s/ //g" | zip babel.zip -@
+	# MANIFEST filenames cannot contain spaces.
+	cut -c1-31 MANIFEST | sed -e "s/ //g" | zip babel.zip -@
 
 clean:
 	-rm -f *${OBJ} babel *.lib *.a
