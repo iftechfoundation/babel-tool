@@ -340,7 +340,7 @@ static int guess_ifiction(char *fn)
  if (strcmp(fn,"-")==0) return 1;
  f=fopen(fn,"r");
  if (!f) return 0;
- i=fread(buf,1023,1,f);
+ i=fread(buf,1,1023,f);
  fclose(f);
  if (i<1) return 0;
  buf[i]=0;
