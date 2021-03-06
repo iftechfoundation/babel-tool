@@ -91,6 +91,7 @@ test:
 
 dist:
 	# MANIFEST filenames cannot contain spaces.
+	-rm rf babel.zip
 	cut -c1-31 MANIFEST | sed -e "s/ //g" | zip babel.zip -@
 
 clean:
