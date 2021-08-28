@@ -65,6 +65,8 @@ static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, i
               return VALID_STORY_FILE_RV;
             }
         }
+      ASSERT_OUTPUT_SIZE(5);
+      strcpy(output,"ALAN-");
       return INCOMPLETE_REPLY_RV;
     }
 }
@@ -119,8 +121,21 @@ static int32 claim_story_file(void *story_file, int32 extent_in_bytes)
       size_in_awords=read_alan_int_at(sf+3*4); /* hdr.size @ 3 */
 
       if (!crc_is_correct(sf, size_in_awords))
-        return INVALID_STORY_FILE_RV;
-
+        {
+          switch (read_alan_int_at(sf+46*4))
+            {
+              case 1427594: /* Enter The Dark */
+              case 3905837: /* A Very Hairy Fish-Mess */
+              case 2271892: /* The Ngah Angah School of Forbidden Wisdom */
+              case 4571913: /* Room 206 */
+              case 3492403: /* IN-D-I-GO SOUL */
+              case 1944721: /* The Christmas Party */
+              case 8683866: /* Waldo’s Pie */
+                return VALID_STORY_FILE_RV;
+              default:
+                return INVALID_STORY_FILE_RV;
+            }
+        }
       return VALID_STORY_FILE_RV;
     }
 }
