@@ -17,18 +17,11 @@
 #include <ctype.h>
 #include <stdio.h>
 
-static int is_uppercase_hexadecimal(char c)
-{
- if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F'))
-  return 1;
- return 0;
-}
-
 static int number_of_hexadecimals_before_hyphen(char *s, size_t len)
 {
  size_t offset = 0;
 
- while (offset < len && is_uppercase_hexadecimal(s[offset]))
+ while (offset < len && isxdigit(s[offset]))
   offset++;
 
  if (offset == len || (offset < len && s[offset] == '-'))
@@ -38,7 +31,9 @@ static int number_of_hexadecimals_before_hyphen(char *s, size_t len)
 }
 
 /* We look for the pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (8-4-4-4-12)
-   where X is a number or A-F */
+ * where X is a number or A-F.
+ * One Hugo game, PAXLess, uses lowercase letters. The rest all use uppercase.
+ */
 static int isUUID(char *s)
 {
  if (!(number_of_hexadecimals_before_hyphen(s, 9) == 8))
