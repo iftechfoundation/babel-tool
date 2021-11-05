@@ -4,3 +4,4 @@
 *.lib
 babel
 babel.exe
+test/*/output
