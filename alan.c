@@ -50,7 +50,7 @@ static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, i
         Alan v3 stores IFIDs in the story file in a format that might differ between versions.
         So just scan for "UUID://"
       */
-      int32 i, j;
+      int32 i, j, k;
 
       for(i=0;i<extent;i++) if (memcmp((char *)story_file+i,"UUID://",7)==0) break;
       if (i<extent) /* Found explicit IFID */
@@ -60,7 +60,10 @@ static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, i
             {
               i+=7;
               ASSERT_OUTPUT_SIZE(j-i);
-              memcpy(output,(char *)story_file+i,j-i);
+              for(k=0;k<j-i;k++)
+                {
+                  output[k]=toupper(((char *)story_file)[i+k]);
+                }
               output[j-i]=0;
               return VALID_STORY_FILE_RV;
             }
