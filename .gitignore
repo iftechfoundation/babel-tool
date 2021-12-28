@@ -2,6 +2,7 @@
 *.obj
 *.a
 *.lib
+*.gch
 babel
 babel.exe
 test/*/output
