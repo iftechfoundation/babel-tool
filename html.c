@@ -1,4 +1,4 @@
-/* twine.c  Treaty of Babel module for Twine files
+/* html.c  Treaty of Babel module for HTML files
  * Copyright 2020 By Andrew Plotkin
  *
  * This file depends on treaty_builder.h
@@ -7,7 +7,7 @@
  * may render it noncompliant with the Treaty of Babel
  */
 
-#define FORMAT twine
+#define FORMAT html
 #define HOME_PAGE "https://twinery.org/"
 #define FORMAT_EXT ".html"
 #define NO_METADATA
