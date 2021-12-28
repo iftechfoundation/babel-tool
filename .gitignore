@@ -5,6 +5,8 @@
 *.gch
 babel
 babel.exe
+babel-get/babel-get
+babel-get/babel-get.exe
 test/*/output
 test/bronze/1810847C-0DC7-44D5-94EF-313A3E7AF257.iFiction
 test/bronze/1810847C-0DC7-44D5-94EF-313A3E7AF257.jpg
