@@ -1,4 +1,4 @@
-all: test-alan test-hugo test-twine test-bronze test-sensory
+all: test-alan test-hugo test-twine test-html test-bronze test-sensory
 
 
 .PHONY: test-alan
@@ -13,6 +13,10 @@ test-hugo:
 test-twine:
 	$(MAKE) -C twine
 
+.PHONY: test-html
+test-html:
+	$(MAKE) -C html
+
 .PHONY: test-bronze
 test-bronze:
 	$(MAKE) -C bronze
@@ -25,5 +29,6 @@ clean:
 	$(MAKE) -C alan clean
 	$(MAKE) -C hugo clean
 	$(MAKE) -C twine clean
+	$(MAKE) -C html clean
 	$(MAKE) -C bronze clean
 	$(MAKE) -C sensory clean
