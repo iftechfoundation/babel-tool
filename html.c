@@ -40,35 +40,6 @@ static int32 find_text_in_file(void *story_file, int32 extent, char *str)
     return -1;
 }
 
-/* Same as the above, except that str and str2 can be separated by any text that does not contain "<" or ">". This is a crude way to locate an HTML tag with an attribute.
-   Kids, don't parse HTML this way.
- */
-static int32 find_text_pair_in_file(void *story_file, int32 extent, char *str, char *str2)
-{
-    int len = strlen(str);
-    int len2 = strlen(str2);
-    int32 ix, jx;
-
-    if (len == 0) {
-        return -1;
-    }
-    
-    for (ix=0; ix<extent-len; ix++) {
-        if (strncasecmp(story_file+ix, str, len) == 0) {
-            for (jx=ix+len; jx<extent-len2; jx++) {
-                char ch = *(char *)(story_file+jx);
-                if (ch == '<' || ch == '>')
-                    break;
-                if (strncasecmp(story_file+jx, str2, len2) == 0) {
-                    return ix;
-                }
-            }
-        }
-    }
-
-    return -1;
-}
-
 static int32 find_attribute_value(void *story_file, int32 extent, char *output, int32 output_extent, int32 pos, char* attribute_prefix) {
     void *starttag = story_file + pos;
     void *endtag = memchr(starttag, '>', extent-pos);
@@ -94,11 +65,6 @@ static int32 find_attribute_value(void *story_file, int32 extent, char *output, 
 static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, int32 output_extent)
 {
     int32 ix;
-    int32 pos = find_text_pair_in_file(story_file, extent, "<meta", "property=\"ifiction:ifid\"");
-    if (pos != -1) {
-        return find_attribute_value(story_file, extent, output, output_extent, pos, "content=\"");
-    }
-
     /* UUID style */
     for (ix=0; ix<extent-7; ix++) {
         if (memcmp((char *)story_file+ix, "UUID://", 7) == 0) {
@@ -116,7 +82,7 @@ static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, i
     }
     
     /* Twine 2 */
-    pos = find_text_in_file(story_file, extent, "<tw-storydata");
+    int32 pos = find_text_in_file(story_file, extent, "<tw-storydata");
     if (pos != -1) {
         return find_attribute_value(story_file, extent, output, output_extent, pos, "ifid=\"");
     }
@@ -146,7 +112,7 @@ static int32 claim_story_file(void *story_file, int32 extent)
     if (find_text_in_file(story_file, extent, "<!doctype html") != -1) {
         return VALID_STORY_FILE_RV;
     }
-    if (find_text_pair_in_file(story_file, extent, "<meta", "property=\"ifiction:ifid\"") != -1) {
+    if (find_text_in_file(story_file, extent, "property=\"ifiction:ifid\"") != -1) {
         return VALID_STORY_FILE_RV;
     }
     return INVALID_STORY_FILE_RV;
