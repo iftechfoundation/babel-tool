@@ -8,7 +8,7 @@
  */
 
 #define FORMAT html
-#define HOME_PAGE "https://twinery.org/"
+#define HOME_PAGE "https://babel.ifarchive.org/"
 #define FORMAT_EXT ".html"
 #define NO_METADATA
 #define NO_COVER
