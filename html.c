@@ -93,11 +93,28 @@ static int32 find_attribute_value(void *story_file, int32 extent, char *output, 
 
 static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, int32 output_extent)
 {
+    int32 ix;
     int32 pos = find_text_pair_in_file(story_file, extent, "<meta", "property=\"ifiction:ifid\"");
     if (pos != -1) {
         return find_attribute_value(story_file, extent, output, output_extent, pos, "content=\"");
     }
 
+    /* UUID style */
+    for (ix=0; ix<extent-7; ix++) {
+        if (memcmp((char *)story_file+ix, "UUID://", 7) == 0) {
+            int32 jx;
+            for (jx=ix+7; jx<extent && ((char *)story_file)[jx]!='/'; jx++);
+            if (jx < extent) {
+                ix += 7;
+                ASSERT_OUTPUT_SIZE(jx-ix+1);
+                memcpy(output, (char *)story_file+ix, jx-ix);
+                output[jx-ix]=0;
+                return VALID_STORY_FILE_RV;
+            }
+            break;
+        }
+    }
+    
     /* Twine 2 */
     pos = find_text_in_file(story_file, extent, "<tw-storydata");
     if (pos != -1) {
