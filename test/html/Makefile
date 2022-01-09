@@ -6,8 +6,6 @@ include ../Makefile.boilerplate
 $(CURDIR):
 	../../babel -format Test-Game-Meta.html > output
 	../../babel -ifid Test-Game-Meta.html >> output
-	../../babel -format Test-Game-Meta-Prefix.html >> output
-	../../babel -ifid Test-Game-Meta-Prefix.html >> output
 	../../babel -format Test-Game-UUID.html >> output
 	../../babel -ifid Test-Game-UUID.html >> output
 	../../babel -format Test-Game-Legacy.html >> output
