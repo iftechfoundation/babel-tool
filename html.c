@@ -1,5 +1,5 @@
 /* html.c  Treaty of Babel module for HTML files
- * Copyright 2020 By Andrew Plotkin
+ * Written 2020 By Andrew Plotkin
  *
  * This file depends on treaty_builder.h
  *
