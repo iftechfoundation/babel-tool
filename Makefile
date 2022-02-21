@@ -19,21 +19,21 @@
 # compiler/linker settings. For temporary fixes just edit...
 
 ifeq ($(shell uname),Linux)
-  CC=gcc -g -Wall
+  COMPILER=${CC} -g -Wall
   OBJ=.o
   BABEL_LIB=babel.a
   BABEL_FLIB=babel_functions.a
   IFICTION_LIB=ifiction.a
   OUTPUT_BABEL=-o babel
 else ifeq ($(shell uname),Darwin)
-  CC=cc -g -Wall
+  COMPILER=cc -g -Wall
   OBJ=.o
   BABEL_LIB=babel.a
   BABEL_FLIB=babel_functions.a
   IFICTION_LIB=ifiction.a
   OUTPUT_BABEL=-o babel
 else
-  CC=bcc32
+  COMPILER=bcc32
   OBJ=.obj
   BABEL_LIB=babel.lib
   IFICTION_LIB=ifiction.lib
@@ -52,10 +52,10 @@ babel_functions =  babel_story_functions${OBJ} babel_ifiction_functions${OBJ} ba
 babel_objs = babel${OBJ} $(BABEL_FLIB) $(IFICTION_LIB) $(BABEL_LIB)
 
 babel: ${babel_objs}
-	${CC} ${OUTPUT_BABEL} ${babel_objs}
+	${COMPILER} ${OUTPUT_BABEL} ${babel_objs}
 
 %${OBJ} : %.c
-	${CC} -c $^
+	${COMPILER} -c $^
 
 register${OBJ}: modules.h
 
