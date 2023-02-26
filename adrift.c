@@ -27,6 +27,32 @@
 #define  VB_INIT       0x00A09E86
 static int32 vbr_state;
 
+void *my_malloc(int32, char *);
+int32 ifiction_get_IFID(char *, char *, int32);
+
+/* Searches case-insensitively for the string str in the story file.
+   The string must be null-terminated. The story file can have nulls
+   anywhere, of course.
+
+   Returns the found position, or -1 for not found.
+*/
+static int32 find_text_in_file(void *story_file, int32 extent, int32 startat, char *str)
+{
+    int len = strlen(str);
+    int32 ix;
+
+    if (len == 0) {
+        return -1;
+    }
+    
+    for (ix=startat; ix<extent-len; ix++) {
+        if (strncasecmp(story_file+ix, str, len) == 0)
+            return ix;
+    }
+
+    return -1;
+}
+
 /*
   Unobfuscates one byte from a taf file. This should be called on each byte
   in order, as the ADRIFT obfuscation function is stately.
@@ -47,6 +73,7 @@ static unsigned char taf_translate (unsigned char c)
 
 static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, int32 output_extent)
 {
+    int ificpos;
     int adv;
     unsigned char buf[4];
     unsigned char *sf=(unsigned char *)story_file;
@@ -54,6 +81,21 @@ static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, i
 
     if (extent <12) return INVALID_STORY_FILE_RV;
 
+    ificpos = find_text_in_file(story_file, extent, 0, "<ifindex");
+    if (ificpos >= 0) {
+        int ificend = find_text_in_file(story_file, extent, ificpos, "</ifindex>");
+        if (ificend >= 0 && ificend > ificpos) {
+            void *tempmd;
+            ificend += 10; /* length of closing tag */
+            tempmd = my_malloc(ificend-ificpos, "temporary ifiction buffer");
+            memcpy(tempmd, story_file+ificpos, ificend-ificpos);
+            int res = ifiction_get_IFID(tempmd, output, output_extent);
+            free(tempmd);
+            if (res >= 0)
+                return res;
+        }
+    }
+    
     buf[3]=0;
     /* Burn the first 8 bytes of translation */
     for(adv=0;adv<8;adv++) taf_translate(0);
