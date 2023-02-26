@@ -207,7 +207,7 @@ static void deep_babel_cover(char stopped)
     int32 i,j;
     FILE *f;
     i=babel_treaty(GET_STORY_FILE_IFID_SEL,buffer,TREATY_MINIMUM_EXTENT);
-    if (i==0)
+    if (i==0) {
         if (babel_md5_ifid(buffer, TREATY_MINIMUM_EXTENT))
             printf("IFID: %s\n",buffer);
         else
@@ -215,9 +215,10 @@ static void deep_babel_cover(char stopped)
             fprintf(stderr,"Unable to create an IFID (A serious problem occurred while loading the file).\n");
             return;
         }
-    else 
-
+    }
+    else {
         ep=strtok(buffer, ",");
+    }
     i=babel_treaty(GET_STORY_FILE_COVER_EXTENT_SEL,NULL,0);
     j=babel_treaty(GET_STORY_FILE_COVER_FORMAT_SEL,NULL,0);
 
@@ -397,9 +398,6 @@ void babel_story_story()
     }
     fclose(f);
     printf("Extracted %s\n",buffer);
-
-  
-
 }
 
 void babel_story_unblorb()

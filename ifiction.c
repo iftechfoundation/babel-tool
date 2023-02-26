@@ -89,40 +89,42 @@ int32 ifiction_get_IFID(char *metadata, char *output, int32 output_extent)
 }
 
 
-static char *leaf_tags[] = { "ifid",
-                             "format",
-                             "bafn",
-                             "title",
-                             "author",
-                             "headline",
-                             "firstpublished",
-                             "genre",
-                             "group",
-                             "description",
-                             "leafname",
-                             "url",
-                             "authoremail",
-                             "height",
-                             "width",
+static char *leaf_tags[] = {
+    "ifid",
+    "format",
+    "bafn",
+    "title",
+    "author",
+    "headline",
+    "firstpublished",
+    "genre",
+    "group",
+    "description",
+    "leafname",
+    "url",
+    "authoremail",
+    "height",
+    "width",
 
-                             NULL
+    NULL
 };
-static char *one_per[] = { "identification",
-                           "bibliographic",
-                           "format",
-                           "title",
-                           "author",
-                           "headline",
-                           "firstpublished",
-                           "genre",
-                           "group",
-                           "description",
-                           "leafname",
-                           "height",
-                           "width",
-                           "forgiveness",
-                           "colophon",
-                           NULL
+static char *one_per[] = {
+    "identification",
+    "bibliographic",
+    "format",
+    "title",
+    "author",
+    "headline",
+    "firstpublished",
+    "genre",
+    "group",
+    "description",
+    "leafname",
+    "height",
+    "width",
+    "forgiveness",
+    "colophon",
+    NULL
 };
 
 static char *required[] = {

@@ -18,14 +18,16 @@ void deep_ifiction_verify(char *md, int f);
 void * my_malloc(uint32, char *);
 char *blorb_chunk_for_name(char *name);
 #ifndef THREE_LETTER_EXTENSIONS
-static char *ext_table[] = { "zcode", ".zblorb",
-                             "glulx", ".gblorb",
-                             NULL, NULL
+static char *ext_table[] = {
+    "zcode", ".zblorb",
+    "glulx", ".gblorb",
+    NULL, NULL
 };
 #else
-static char *ext_table[] = { "zcode", ".zlb",
-                             "glulx", ".glb",
-                             NULL, NULL
+static char *ext_table[] = {
+    "zcode", ".zlb",
+    "glulx", ".glb",
+    NULL, NULL
 };
 
 #endif
@@ -329,8 +331,6 @@ void babel_multi_blorb1(char **args, char *todir , int argc)
     if (bb) *bb=0;
     _babel_multi_blorb(buf,args,todir,argc);
     free(buf);
- 
-
 }
 
 static int guess_ifiction(char *fn)

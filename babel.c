@@ -108,15 +108,18 @@ int main(int argc, char **argv)
         todir=argv[argc-1];
         argc-=2;
     }
-    if (ok) for(i=0;multifuncs[i].function;i++)
-                if (strcmp(argv[1],multifuncs[i].function)==0 &&
-                    argc>= multifuncs[i].nargsm+2 &&
-                    argc <= multifuncs[i].nargsx+2)
-                {
+    if (ok) {
+        for(i=0;multifuncs[i].function;i++) {
+            if (strcmp(argv[1],multifuncs[i].function)==0 &&
+                argc>= multifuncs[i].nargsm+2 &&
+                argc <= multifuncs[i].nargsx+2)
+            {
 
-                    multifuncs[i].handler(argv+2, todir, argc-2);
-                    exit(0);
-                }
+                multifuncs[i].handler(argv+2, todir, argc-2);
+                exit(0);
+            }
+        }
+    }
 
     if (argc!=3) ok=0;
 
@@ -174,7 +177,7 @@ int main(int argc, char **argv)
         fread(md,1,l-1,f);
         md[l-1]=0;
     }
-    else
+    else {
         while(!feof(stdin))
         {
             char *tt, mdb[1024];
@@ -187,7 +190,7 @@ int main(int argc, char **argv)
             ll+=ii;
             if (ii<1024) break;
         }
-
+    }
 
     if (strstr(md,"<?xml version=") && strstr(md,"<ifindex"))
     { /* appears to be an ifiction file */
