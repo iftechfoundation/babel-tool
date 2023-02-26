@@ -37,35 +37,35 @@ static int32 vbr_state;
 */
 static unsigned char taf_translate (unsigned char c)
 {
- int32 r;
+    int32 r;
 
- vbr_state = (vbr_state*VB_RAND1+VB_RAND2) & VB_RAND3;
- r=UCHAR_MAX * (unsigned) vbr_state;
- r/=((unsigned) VB_RAND3)+1;
- return r^c;
+    vbr_state = (vbr_state*VB_RAND1+VB_RAND2) & VB_RAND3;
+    r=UCHAR_MAX * (unsigned) vbr_state;
+    r/=((unsigned) VB_RAND3)+1;
+    return r^c;
 }
 
 static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, int32 output_extent)
 {
- int adv;
- unsigned char buf[4];
- unsigned char *sf=(unsigned char *)story_file;
- vbr_state=VB_INIT;
+    int adv;
+    unsigned char buf[4];
+    unsigned char *sf=(unsigned char *)story_file;
+    vbr_state=VB_INIT;
 
- if (extent <12) return INVALID_STORY_FILE_RV;
+    if (extent <12) return INVALID_STORY_FILE_RV;
 
- buf[3]=0;
- /* Burn the first 8 bytes of translation */
- for(adv=0;adv<8;adv++) taf_translate(0);
- /* Bytes 8-11 contain the Adrift version number in the formay N.NN */
- buf[0]=taf_translate(sf[8]);
- taf_translate(0);
- buf[1]=taf_translate(sf[10]);
- buf[2]=taf_translate(sf[11]);
- adv=atoi((char *) buf);
- ASSERT_OUTPUT_SIZE(12);
- sprintf(output,"ADRIFT-%03d-",adv);
- return INCOMPLETE_REPLY_RV;
+    buf[3]=0;
+    /* Burn the first 8 bytes of translation */
+    for(adv=0;adv<8;adv++) taf_translate(0);
+    /* Bytes 8-11 contain the Adrift version number in the formay N.NN */
+    buf[0]=taf_translate(sf[8]);
+    taf_translate(0);
+    buf[1]=taf_translate(sf[10]);
+    buf[2]=taf_translate(sf[11]);
+    adv=atoi((char *) buf);
+    ASSERT_OUTPUT_SIZE(12);
+    sprintf(output,"ADRIFT-%03d-",adv);
+    return INCOMPLETE_REPLY_RV;
 
 }
 
@@ -76,14 +76,14 @@ static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, i
 */
 static int32 claim_story_file(void *story_file, int32 extent)
 {
- unsigned char buf[8];
- int i;
- unsigned char *sf=(unsigned char *)story_file;
- buf[7]=0;
- vbr_state=VB_INIT;
- if (extent<12) return INVALID_STORY_FILE_RV;
- for(i=0;i<7;i++) buf[i]=taf_translate(sf[i]);
- if (strcmp((char *)buf,"Version")) return INVALID_STORY_FILE_RV;
- return VALID_STORY_FILE_RV;
+    unsigned char buf[8];
+    int i;
+    unsigned char *sf=(unsigned char *)story_file;
+    buf[7]=0;
+    vbr_state=VB_INIT;
+    if (extent<12) return INVALID_STORY_FILE_RV;
+    for(i=0;i<7;i++) buf[i]=taf_translate(sf[i]);
+    if (strcmp((char *)buf,"Version")) return INVALID_STORY_FILE_RV;
+    return VALID_STORY_FILE_RV;
 
 }
