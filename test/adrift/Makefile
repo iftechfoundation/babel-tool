@@ -11,4 +11,4 @@ $(CURDIR):
 	$(VERIFY)
 
 clean:
-	-rm -f output
+	-rm -f output ADRIFT-*
