@@ -1,5 +1,9 @@
-all: test-alan test-hugo test-twine test-html test-bronze test-sensory
+all: test-adrift test-alan test-hugo test-twine test-html test-bronze test-sensory
 
+
+.PHONY: test-adrift
+test-adrift:
+	$(MAKE) -C adrift
 
 .PHONY: test-alan
 test-alan:
@@ -26,6 +30,7 @@ test-sensory:
 	$(MAKE) -C sensory
 
 clean:
+	$(MAKE) -C adrift clean
 	$(MAKE) -C alan clean
 	$(MAKE) -C hugo clean
 	$(MAKE) -C twine clean
