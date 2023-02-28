@@ -6,6 +6,7 @@ include ../Makefile.boilerplate
 $(CURDIR):
 	echo Valid: > output
 	../../babel -ifid valid.a3c >> output
+	../../babel -identify valid.a3c >> output
 	echo Invalid: >> output
 	../../babel -ifid invalid.a3c >> output
 	echo V3 without UUID >> output
