@@ -83,7 +83,12 @@ static bool crc_is_correct(byte *story_file, int32 size_in_awords) {
   for (int i=50*4;i<(size_in_awords*4);i++)
     calculated_crc+=story_file[i];
 
-  /* Some Alan 3 games seem to have added 284 to their internal checksum */
+  /* Some Alan 3 games seem to have added 284 to their internal checksum.
+     We allow this error.
+     (It would be more conservative to only allow this error for a few games:
+     A Very Hairy Fish-Mess, The Ngah Angah School of Forbidden Wisdom,
+     Room 206, IN-D-I-GO SOUL, The Christmas Party. But we're not going
+     to be that fussy.) */
   return (calculated_crc == crc_in_file || calculated_crc + 284 == crc_in_file);
 }
 
