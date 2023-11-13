@@ -33,7 +33,7 @@ static int32 find_text_in_file(void *story_file, int32 extent, char *str)
     }
     
     for (ix=0; ix<extent-len; ix++) {
-        if (strncasecmp(story_file+ix, str, len) == 0)
+        if (strncasecmp((char *)story_file+ix, str, len) == 0)
             return ix;
     }
 
@@ -43,7 +43,7 @@ static int32 find_text_in_file(void *story_file, int32 extent, char *str)
 /* Same as the above, except that str and str2 can be separated by any text that does not contain "<" or ">". This is a crude way to locate an HTML tag with an attribute.
    Kids, don't parse HTML this way.
  */
-static int32 find_text_pair_in_file(void *story_file, int32 extent, char *str, char *str2)
+static int32 find_text_pair_in_file(char *story_file, int32 extent, char *str, char *str2)
 {
     int len = strlen(str);
     int len2 = strlen(str2);
@@ -69,14 +69,14 @@ static int32 find_text_pair_in_file(void *story_file, int32 extent, char *str, c
     return -1;
 }
 
-static int32 find_attribute_value(void *story_file, int32 extent, char *output, int32 output_extent, int32 pos, char* attribute_prefix) {
-    void *starttag = story_file + pos;
-    void *endtag = memchr(starttag, '>', extent-pos);
+static int32 find_attribute_value(char *story_file, int32 extent, char *output, int32 output_extent, int32 pos, char* attribute_prefix) {
+    char *starttag = story_file + pos;
+    char *endtag = memchr(starttag, '>', extent-pos);
     if (endtag) {
         int32 attrpos = find_text_in_file(starttag, endtag-starttag, attribute_prefix);
         if (attrpos != -1) {
             attrpos += strlen(attribute_prefix);
-            void *endattr = memchr(starttag+attrpos, '"', endtag-(starttag+attrpos));
+            char *endattr = memchr(starttag+attrpos, '"', endtag-(starttag+attrpos));
             if (endattr) {
                 /* Got it. */
                 int32 attrlen = endattr - (starttag+attrpos);

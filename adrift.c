@@ -35,7 +35,7 @@ int32 ifiction_get_IFID(char *, char *, int32);
 
    Returns the found position, or -1 for not found.
 */
-static int32 find_text_in_file(void *story_file, int32 extent, int32 startat, char *str)
+static int32 find_text_in_file(char *story_file, int32 extent, int32 startat, char *str)
 {
     int len = strlen(str);
     int32 ix;
@@ -134,7 +134,7 @@ static int32 get_story_file_metadata(void *story_file, int32 extent, char *outpu
             int32 len = (ificend - ificpos);
             if (len > output_extent) 
                 return INVALID_USAGE_RV;
-            memcpy(output, story_file+ificpos, ificend-ificpos);
+            memcpy(output, (char *)story_file+ificpos, ificend-ificpos);
             return len;
         }
     }
