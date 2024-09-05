@@ -32,7 +32,7 @@ static struct exetype magic[]= {
     { elfmagic, "ELF", 4 },
     { javamagic, "JAVA", 4 },
     { amigamagic, "AMIGA", 4 },
-    { "#! ", "SCRIPT", 3 },
+    { "#!", "SCRIPT", 2 },
     { machomagic, "MACHO",4 },
     { "APPL", "MAC",4 },
     { NULL, NULL, 0 }
