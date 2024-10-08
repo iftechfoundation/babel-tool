@@ -239,8 +239,10 @@ int main(int argc, char **argv)
             {
                 getcwd(cwd,512);
                 chdir(todir);
-                if (!babel_get_authoritative() && strcmp(argv[1],"-format"))
-                    printf("Warning: Story format could not be positively identified. Guessing %s\n",lt);
+                if (!babel_get_authoritative() && strcmp(argv[1],"-format")) {
+                    if (show_warnings)
+                        printf("Warning: Story format could not be positively identified. Guessing %s\n",lt);
+                }
                 functions[i].story();
 
                 chdir(cwd);
