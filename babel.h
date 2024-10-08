@@ -25,6 +25,8 @@
 extern "C" {
 #endif
 
+extern int show_warnings;
+
 /* Functions from babel_story_functions.c
  *
  * Each of these assumes that the story file has been loaded by babel_handler
