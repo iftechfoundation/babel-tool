@@ -120,6 +120,9 @@ static void examine_tag(struct XMLTag *xtg, void *ctx)
  }
 
 }
+
+/* The ctx argument is -1 to ignore errors and warnings; 0 to only show
+   errors; 1 to show errors and warnings. */
 static void verify_eh(char *e, void *ctx)
 {
  if (*((int *)ctx) < 0) return;
