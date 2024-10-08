@@ -1,0 +1,12 @@
+1: Welcome to the story!
+UUID://7807FA65-E57C-40E7-877C-823735EFE9A6//
+- Go to paragraph 2.
+
+2: You are Jimmy.
+- To buy vanilla ice-cream, go to paragraph 3.
+- To conquer the world with your vampire legions and rule in a thousand-year
+  empire of blood, go to paragraph 4.
+
+3: The end.
+
+4: The end?
