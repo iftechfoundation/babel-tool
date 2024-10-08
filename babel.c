@@ -31,6 +31,7 @@ extern "C" {
 #endif
 
 char *fn = NULL;
+int show_warnings = 1;
 
 /* checked malloc function */
 void *my_malloc(int, char *);
@@ -95,6 +96,13 @@ int main(int argc, char **argv)
     int ok=1,i, l, ll;
     FILE *f;
     char *md=NULL;
+
+    if (argc >= 2 && !strcmp(argv[1], "-nowarn")) {
+        /* Trim this argument from the beginning. */
+        argv++;
+        argc--;
+        show_warnings = 0;
+    }
     
     /* Set the input filename.  Note that if this is invalid, babel should
        abort before anyone notices
@@ -108,6 +116,7 @@ int main(int argc, char **argv)
      */
     if (ok && argc >=5 && strcmp(argv[argc-2], "-to")==0)
     {
+        /* Trim this argument from the end. */
         todir=argv[argc-1];
         argc-=2;
     }
