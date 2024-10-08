@@ -178,7 +178,8 @@ static void _babel_multi_blorb(char *outfile, char **args, char *todir , int arg
     }
     if (babel_get_length() != babel_get_story_length())
     {
-        fprintf(stderr,"Warning: Story file will be extacted from container before blorbing\n");
+        if (show_warnings)
+            fprintf(stderr,"Warning: Story file will be extacted from container before blorbing\n");
     }
     /* printf("Completing ifiction\n");*/
     md=deep_complete_ifiction(args[1],buffer,b2);
