@@ -10,6 +10,10 @@ $(CURDIR):
 	../../babel -ifid ifid.bin >> output
 	../../babel -format textifid.txt >> output
 	../../babel -ifid textifid.txt >> output
+	../../babel -format script.sh >> output
+	../../babel -ifid script.sh >> output
+	../../babel -format scriptifid.sh >> output
+	../../babel -ifid scriptifid.sh >> output
 	$(VERIFY)
 
 clean:
