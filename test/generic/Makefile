@@ -6,6 +6,10 @@ include ../Makefile.boilerplate
 $(CURDIR):
 	../../babel -format noifid.bin > output
 	../../babel -ifid noifid.bin >> output
+	../../babel -format ifid.bin >> output
+	../../babel -ifid ifid.bin >> output
+	../../babel -format textifid.txt >> output
+	../../babel -ifid textifid.txt >> output
 	$(VERIFY)
 
 clean:
