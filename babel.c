@@ -30,7 +30,7 @@ extern "C" {
 }
 #endif
 
-char *fn;
+char *fn = NULL;
 
 /* checked malloc function */
 void *my_malloc(int, char *);
@@ -95,12 +95,15 @@ int main(int argc, char **argv)
     int ok=1,i, l, ll;
     FILE *f;
     char *md=NULL;
+    
     /* Set the input filename.  Note that if this is invalid, babel should
        abort before anyone notices
     */
-    fn=argv[2];
+    if (argc >= 3)
+        fn=argv[2];
+    else
+        ok=0;
 
-    if (argc < 3) ok=0;
     /* Detect the presence of the "-to <directory>" argument.
      */
     if (ok && argc >=5 && strcmp(argv[argc-2], "-to")==0)
