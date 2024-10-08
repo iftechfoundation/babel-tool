@@ -107,7 +107,7 @@ void babel_ifiction_ifid(char *md)
 
 }
 
-static char isok;
+static int haserrors, haswarnings;
 
 static void examine_tag(struct XMLTag *xtg, void *ctx)
 {
@@ -126,10 +126,17 @@ static void examine_tag(struct XMLTag *xtg, void *ctx)
 static void verify_eh(char *e, void *ctx)
 {
  if (*((int *)ctx) < 0) return;
- if (*((int *)ctx) || strncmp(e,"Warning",7))
-  { isok=0;
+ if (strncmp(e,"Warning",7)) {
+  /* Error */
+  haserrors=1;
+  fprintf(stderr, "%s\n",e);
+ }
+ else {
+  /* Warning */
+  haswarnings=1;
+  if (*((int *)ctx))
    fprintf(stderr, "%s\n",e);
-  }
+ }
 }
 
 
@@ -143,29 +150,30 @@ void babel_ifiction_fish(char *md)
 void deep_ifiction_verify(char *md, int f)
 {
  struct IFiction_Info ii;
- int i=0;
+ int errmode=0;
  ii.wmode=0;
- isok=1;
+ haserrors = haswarnings = 0;
  strcpy(ii.ifid,"UNKNOWN");
- ifiction_parse(md,examine_tag,&ii,verify_eh,&i);
- if (f&& isok) printf("Verified %s\n",ii.ifid);
+ ifiction_parse(md,examine_tag,&ii,verify_eh,&errmode);
+ if (f&& !haserrors) printf("Verified %s\n",ii.ifid);
 }
+
 void babel_ifiction_verify(char *md)
 {
  deep_ifiction_verify(md,1);
-
 }
 
 
 void babel_ifiction_lint(char *md)
 {
  struct IFiction_Info ii;
- int i=1;
+ int errmode=show_warnings;
  ii.wmode=1;
- isok=1;
+ haserrors = haswarnings = 0;
  strcpy(ii.ifid,"UNKNOWN");
- ifiction_parse(md,examine_tag,&ii,verify_eh,&i);
- if (isok) printf("%s conforms to iFiction style guidelines\n",ii.ifid);
+ ifiction_parse(md,examine_tag,&ii,verify_eh,&errmode);
+ if (!(haserrors || haswarnings)) printf("%s conforms to iFiction style guidelines\n",ii.ifid);
+ else if (!haserrors) printf("%s conforms to guidelines with warnings\n",ii.ifid);
 }
 
 
