@@ -564,15 +564,15 @@ int32 find_uuid_ifid_marker(void *sf, int32 extent, char *output, int32 output_e
                 int ch = ((unsigned char *)sf)[j];
                 if (!(isdigit(ch) || isupper(ch) || ch == '-'))
                     break;
-                if (j < extent-2 && ((char *)sf)[j] == '/' && ((char *)sf)[j+1] == '/') {
-                    int len = j-(i+7);
-                    if (len+1 > extent)
-                        return INVALID_USAGE_RV;
-                    for (k=0; k<len; k++)
-                        output[k] = ((char *)sf)[i+7+k];
-                    output[k] = 0;
-                    return VALID_STORY_FILE_RV;
-                }
+            }
+            if (j < extent-2 && ((char *)sf)[j] == '/' && ((char *)sf)[j+1] == '/') {
+                int len = j-(i+7);
+                if (len+1 > extent)
+                    return INVALID_USAGE_RV;
+                for (k=0; k<len; k++)
+                    output[k] = ((char *)sf)[i+7+k];
+                output[k] = 0;
+                return VALID_STORY_FILE_RV;
             }
         }
     }
