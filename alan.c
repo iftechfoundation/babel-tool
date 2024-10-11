@@ -48,7 +48,10 @@ static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, i
     {
       /*
         Alan v3 stores IFIDs in the story file in a format that might differ between versions.
-        So just scan for "UUID://"
+        So just scan for "UUID://".
+        Alan files seem to have lower-case hex in the "UUID://" string,
+        which is not what we want, but we accept it for historic
+        reasons. We therefore don't call find_uuid_ifid_marker().
       */
       int32 i, j, k;
 

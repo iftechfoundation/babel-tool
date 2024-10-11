@@ -14,6 +14,7 @@
 #define NO_COVER
 
 #include "treaty_builder.h"
+#include "ifiction.h"
 #include <ctype.h>
 #include <stdio.h>
 
@@ -100,20 +101,9 @@ static int32 get_story_file_IFID(void *story_file, int32 extent, char *output, i
     }
 
     /* UUID style */
-    for (ix=0; ix<extent-7; ix++) {
-        if (memcmp((char *)story_file+ix, "UUID://", 7) == 0) {
-            int32 jx;
-            for (jx=ix+7; jx<extent && ((char *)story_file)[jx]!='/'; jx++);
-            if (jx < extent) {
-                ix += 7;
-                ASSERT_OUTPUT_SIZE(jx-ix+1);
-                memcpy(output, (char *)story_file+ix, jx-ix);
-                output[jx-ix]=0;
-                return VALID_STORY_FILE_RV;
-            }
-            break;
-        }
-    }
+    ix = find_uuid_ifid_marker(story_file, extent, output, output_extent);
+    if (ix == VALID_STORY_FILE_RV || ix == INVALID_USAGE_RV)
+        return ix;
     
     /* Twine 2 */
     pos = find_text_in_file(story_file, extent, "<tw-storydata");
