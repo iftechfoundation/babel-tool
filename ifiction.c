@@ -27,6 +27,11 @@
  * it strictly checks the ifiction record against the Treaty of Babel
  * requirements
  *
+ * int32 find_uuid_ifid_marker(void *sf, int32 extent, char *output, int32 output_extent)
+ * Search a memory block for a "UUID://...//" string, being careful about
+ * the format. Returns VALID_STORY_FILE_RV if found, INVALID_STORY_FILE_RV
+ * if not found, INVALID_USAGE_RV if the output_extent is too short.
+ *
  */
 
 #include "ifiction.h"
@@ -547,4 +552,30 @@ char *ifiction_get_tag(char *md, char *p, char *t, char *from)
     ifiction_parse(md,ifiction_find_value,&gt,ifiction_null_eh,NULL);
     if (gt.target){ if (gt.output) free(gt.output); return NULL; }
     return gt.output;
+}
+
+int32 find_uuid_ifid_marker(void *sf, int32 extent, char *output, int32 output_extent)
+{
+    int32 i, j, k;
+
+    for (i=0; i<extent-7; i++) {
+        if (!memcmp((char *)sf+i, "UUID://", 7)) {
+            for (j=i+7; j<extent; j++) {
+                int ch = ((unsigned char *)sf)[j];
+                if (!(isdigit(ch) || isupper(ch) || ch == '-'))
+                    break;
+                if (j < extent-2 && ((char *)sf)[j] == '/' && ((char *)sf)[j+1] == '/') {
+                    int len = j-(i+7);
+                    if (len+1 > extent)
+                        return INVALID_USAGE_RV;
+                    for (k=0; k<len; k++)
+                        output[k] = ((char *)sf)[i+7+k];
+                    output[k] = 0;
+                    return VALID_STORY_FILE_RV;
+                }
+            }
+        }
+    }
+    
+    return INVALID_STORY_FILE_RV;
 }
