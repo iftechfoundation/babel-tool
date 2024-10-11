@@ -173,7 +173,7 @@ void babel_ifiction_lint(char *md)
  strcpy(ii.ifid,"UNKNOWN");
  ifiction_parse(md,examine_tag,&ii,verify_eh,&errmode);
  if (!(haserrors || haswarnings)) printf("%s conforms to iFiction style guidelines\n",ii.ifid);
- else if (!haserrors) printf("%s conforms to guidelines with warnings\n",ii.ifid);
+ else if (!haserrors) printf("%s does not conform to guidelines\n",ii.ifid);
 }
 
 
