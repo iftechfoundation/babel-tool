@@ -12,6 +12,9 @@
 # One slash on the end, should be two
 # UUID://720B7596-4D32-4F79-AA8E-FAA7681DF5B4/
 
+# One slash at the beginning, should be two
+# UUID:/720B7596-4D32-4F79-AA8E-FAA7681DF5B4//
+
 # Spaces in the middle is bad
 # UUID://78D1986A-C0A7-48E0   9E52-A16D0ADFE992//
 
