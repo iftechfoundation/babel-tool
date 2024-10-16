@@ -1,6 +1,6 @@
 /*  treaty.h    Header file for Treaty of Babel compliant format modules
  *  By L. Ross Raszewski
- *  Version 0.5
+ *  Version 0.7
  *
  *  This file is public domain, but please note that derived versions
  *  may not not be compliant with the Treaty of Babel.
