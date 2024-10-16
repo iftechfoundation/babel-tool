@@ -30,7 +30,8 @@ extern "C" {
 }
 #endif
 
-char *fn;
+char *fn = NULL;
+int show_warnings = 1;
 
 /* checked malloc function */
 void *my_malloc(int, char *);
@@ -95,16 +96,27 @@ int main(int argc, char **argv)
     int ok=1,i, l, ll;
     FILE *f;
     char *md=NULL;
+
+    if (argc >= 2 && !strcmp(argv[1], "-nowarn")) {
+        /* Trim this argument from the beginning. */
+        argv++;
+        argc--;
+        show_warnings = 0;
+    }
+    
     /* Set the input filename.  Note that if this is invalid, babel should
        abort before anyone notices
     */
-    fn=argv[2];
+    if (argc >= 3)
+        fn=argv[2];
+    else
+        ok=0;
 
-    if (argc < 3) ok=0;
     /* Detect the presence of the "-to <directory>" argument.
      */
     if (ok && argc >=5 && strcmp(argv[argc-2], "-to")==0)
     {
+        /* Trim this argument from the end. */
         todir=argv[argc-1];
         argc-=2;
     }
@@ -227,8 +239,10 @@ int main(int argc, char **argv)
             {
                 getcwd(cwd,512);
                 chdir(todir);
-                if (!babel_get_authoritative() && strcmp(argv[1],"-format"))
-                    printf("Warning: Story format could not be positively identified. Guessing %s\n",lt);
+                if (!babel_get_authoritative() && strcmp(argv[1],"-format")) {
+                    if (show_warnings)
+                        printf("Warning: Story format could not be positively identified. Guessing %s\n",lt);
+                }
                 functions[i].story();
 
                 chdir(cwd);
