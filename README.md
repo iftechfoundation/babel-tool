@@ -1,4 +1,4 @@
-## Version 0.6, Treaty of Babel Revision 11
+## Version 0.7, Treaty of Babel Revision 12
 
 This is the source code for babel, the [Treaty of Babel][babel] analysis tool.
 
