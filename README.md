@@ -11,7 +11,9 @@ Namely, `babel`:
 * determines the format of a story file
 * determines the IFID of a story file
 * verifies the correctness of iFiction metadata
-* bundles story files, metadata, and cover art together in the blorb format
+* bundles story files, metadata, and cover art together in the [blorb format][blorb]
+
+[blorb]: https://eblong.com/zarf/blorb/
 
 `Babel` is also a portable C API for accessing the functionality provided by the treaty.
 
@@ -19,14 +21,14 @@ Included with the `babel` source is a suite of programs intended to extend `babe
 
 The babel suite includes:
 
-* babel-get: Fetches metadata and cover art from a variety of sources
-* babel-list: Demo program to describe all story files in a directory
-* ifiction-aggregate: Combine multiple iFiction files into one
-* ifiction-xtract: Search metadata for a named value
-* babel-cache.pl: Build a cache of metadata and cover art for your story file collection
-* babel-marry.pl: Encapsulate your story collection with its metadata
-* simple-marry: Simplified babel-marry for windows users
-* babel-wed.pl: Find and merge a story file with its metadata (also available as windows executable)
+* `babel-get`: Fetches metadata and cover art from a variety of sources
+* `babel-list`: Demo program to describe all story files in a directory
+* `ifiction-aggregate`: Combine multiple iFiction files into one
+* `ifiction-xtract`: Search metadata for a named value
+* `babel-cache.pl`: Build a cache of metadata and cover art for your story file collection
+* `babel-marry.pl`: Encapsulate your story collection with its metadata
+* `simple-marry`: Simplified babel-marry for windows users
+* `babel-wed.pl`: Find and merge a story file with its metadata (also available as windows executable)
 
 Parts of `babel` are intended for use in other programs.  When adapting
 `babel`'s source, the files `babel.c`, `babel_story_functions.c` and
