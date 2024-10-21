@@ -13,8 +13,8 @@
 
 #define TREATY_H
 
-#define TREATY_COMPLIANCE "Treaty of Babel revision 10"
-#define TREATY_VERSION "r10"
+#define TREATY_COMPLIANCE "Treaty of Babel revision 12"
+#define TREATY_VERSION "r12"
 
 /* return codes */
 #define NO_REPLY_RV                    0
