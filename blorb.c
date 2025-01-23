@@ -246,7 +246,7 @@ static int32 claim_story_file(void *story_file, int32 extent)
         memcmp(story_file,"FORM",4) ||
         memcmp((char *)story_file+8,"IFRS",4) 
     ) i= INVALID_STORY_FILE_RV;
-    else i= NO_REPLY_RV;
+    else i= VALID_STORY_FILE_RV;
  
     return i;
 
