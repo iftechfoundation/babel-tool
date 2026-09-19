@@ -22,6 +22,9 @@ $(CURDIR):
 	echo 'casetest.sh.sh' >> output
 	../../babel -format casetest.sh >> output
 	../../babel -ifid casetest.sh >> output
+	echo 'ifid-at-end.bin' >> output
+	../../babel -format ifid-at-end.bin >> output
+	../../babel -ifid ifid-at-end.bin >> output
 	$(VERIFY)
 
 clean:
