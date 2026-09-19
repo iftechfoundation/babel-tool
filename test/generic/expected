@@ -19,6 +19,10 @@ IFID: 83736698-9189-4FB0-B93C-874215C7C5F8
 casetest.sh.sh
 Format: executable
 IFID: 7590E1B3-9076-4FEE-9941-57D8F4515BB2
+ifid-at-start.bin
+Format: executable (non-authoritative)
+Warning: Story format could not be positively identified. Guessing executable
+IFID: 90CB950B-CE70-49DF-BF1D-1D950278B92A
 ifid-at-end.bin
 Format: executable (non-authoritative)
 Warning: Story format could not be positively identified. Guessing executable
