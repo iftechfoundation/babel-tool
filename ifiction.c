@@ -565,7 +565,7 @@ int32 find_uuid_ifid_marker(void *sf, int32 extent, char *output, int32 output_e
                 if (!(isdigit(ch) || isupper(ch) || ch == '-'))
                     break;
             }
-            if (j < extent-2 && ((char *)sf)[j] == '/' && ((char *)sf)[j+1] == '/') {
+            if (j + 1 < extent && ((char *)sf)[j] == '/' && ((char *)sf)[j+1] == '/') {
                 int len = j-(i+7);
                 if (len+1 > extent)
                     return INVALID_USAGE_RV;
