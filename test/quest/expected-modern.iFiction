@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifindex version="1.0" xmlns="http://babel.ifarchive.org/protocol/iFiction/">
+  <story>
+    <identification>
+      <ifid>1974A053-7DB0-4103-93A1-767C1382C0B7</ifid>
+      <format>quest</format>
+    </identification>
+    <bibliographic>
+      <title>Babel Quest Fixture</title>
+      <author>Test Author</author>
+      <headline>A Headline</headline>
+      <genre>Fantasy</genre>
+      <firstpublished>2026</firstpublished>
+      <description>A short description.</description>
+      <language>en</language>
+    </bibliographic>
+    <cover>
+      <format>png</format>
+      <height>1</height>
+      <width>1</width>
+    </cover>
+    <quest>
+      <style>Text Adventure</style>
+      <version>1.0</version>
+      <coverleafname>cover.png</coverleafname>
+    </quest>
+    <releases>
+      <attached>
+        <release>
+          <version>1</version>
+          <releasedate>2026-09-09</releasedate>
+          <compiler>Quest Viva</compiler>
+          <compilerversion>6.0.0-beta.60</compilerversion>
+        </release>
+      </attached>
+    </releases>
+    <colophon>
+      <generator>Quest Viva</generator>
+      <generatorversion>6.0.0-beta.60</generatorversion>
+      <originated>2026-09-09</originated>
+    </colophon>
+  </story>
+</ifindex>

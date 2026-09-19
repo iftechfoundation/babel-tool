@@ -1,4 +1,4 @@
-all: test-adrift test-alan test-hugo test-twine test-html test-bronze test-sensory test-generic
+all: test-adrift test-alan test-hugo test-twine test-html test-bronze test-sensory test-generic test-quest
 
 
 .PHONY: test-adrift
@@ -33,6 +33,10 @@ test-sensory:
 test-generic:
 	$(MAKE) -C generic
 
+.PHONY: test-quest
+test-quest:
+	$(MAKE) -C quest
+
 clean:
 	$(MAKE) -C adrift clean
 	$(MAKE) -C alan clean
@@ -42,3 +46,4 @@ clean:
 	$(MAKE) -C bronze clean
 	$(MAKE) -C sensory clean
 	$(MAKE) -C generic clean
+	$(MAKE) -C quest clean

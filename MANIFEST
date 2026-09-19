@@ -31,6 +31,9 @@ tads.c                          Common functions for TADS modules
 tads2.c                         Treaty of Babel module for tads2
 tads3.c                         Treaty of Babel module for tads3
 html.c                          Treaty of Babel module for HTML
+quest.c                         Treaty of Babel module for Quest
+tinfl.c                         Public-domain DEFLATE inflater (miniz tinfl)
+tinfl.h                         Header for tinfl.c
 zcode.c                         Treaty of Babel module for zcode
 README.md                       documentation
 MANIFEST                        this file
@@ -83,4 +86,15 @@ test/sensory/Makefile           Makefile for Sensory Jam test
 test/sensory/expected           Expected Sensory Jam test output
 test/sensory/sensory.blb        Sensory Jam by Andrew Plotkin
 test/sensory/sensory.ulx        Expected Sensory Jam story file
+test/quest/Makefile             Makefile for Quest test
+test/quest/expected             Expected Quest test output
+test/quest/legacy.quest         Legacy Quest package fixture
+test/quest/modern.quest         New-style Quest package fixture
+test/quest/raw.aslx             Raw ASLX fixture
+test/quest/sample.asl           Quest 1-4 ASL fixture
+test/quest/sample.cas           Quest 1-4 CAS header fixture
+test/quest/expected-asl.iFiction Expected ASL Quest iFiction
+test/quest/expected-cas.iFiction Expected CAS Quest iFiction
+test/quest/expected-legacy.iFiction Expected legacy Quest iFiction
+test/quest/expected-modern.iFiction Expected modern Quest iFiction
 

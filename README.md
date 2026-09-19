@@ -91,6 +91,7 @@ The following files are public domain:
 - alan.c
 - adrift.c
 - html.c
+- quest.c
 - treaty.h
 - treaty_builder.h
 
@@ -100,6 +101,11 @@ The following files are Copyright (C) 1999, 2000, 2002 Aladdin Enterprises:
 - md5.h
 
 And are used in accordance with their licenses.
+
+The following files are public domain (Unlicense) inflate code by Rich Geldreich:
+
+- tinfl.c
+- tinfl.h
 
 The following files are Copyright 2006 by Emily Short:
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifindex version="1.0" xmlns="http://babel.ifarchive.org/protocol/iFiction/">
+  <story>
+    <colophon>
+      <generator>Babel</generator>
+      <generatorversion>r12</generatorversion>
+      <originated>2026-09-10</originated>
+    </colophon>
+    <identification>
+      <ifid>QUEST-F11547C61CE0D3A754F8EA69BF853FDF</ifid>
+      <format>quest</format>
+    </identification>
+    <bibliographic>
+      <title>Babel Quest ASL Fixture</title>
+      <author>Test Author</author>
+      <firstpublished>2002</firstpublished>
+      <description>A short description.<br/>Second paragraph with style codes.</description>
+    </bibliographic>
+    <quest>
+      <version>0.1</version>
+    </quest>
+  </story>
+</ifindex>
