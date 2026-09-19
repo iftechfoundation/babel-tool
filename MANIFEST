@@ -53,6 +53,16 @@ babel-get/get_url.c             URL source
 babel-get/Makefile              Makefile for babel-get
 test/Makefile                   Makefile for test suite
 test/Makefile.boilerplate       Common definitions for test Makefiles
+test/generic/Makefile           Makefile for generic files test
+test/generic/expected           Expected generic test output
+test/generic/noifid.bin         Binary file with no embedded IFID
+test/generic/ifid.bin           Binary file with embedded IFID
+test/generic/ifid-at-end.bin    IFID at the very end of a file
+test/generic/ifid-at-start.bin  IFID at the very start of a file
+test/generic/script.sh          Script with no IFID
+test/generic/scriptifid.sh      Script with embedded IFID
+test/generic/textifid.txt       Text file with embedded IFID
+test/generic/casetest.sh        Text variations on IFID
 test/alan/Makefile              Makefile for alan test
 test/alan/expected              Expected alan test output
 test/alan/invalid.a3c           Alan test file
