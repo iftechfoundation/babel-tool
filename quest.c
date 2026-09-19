@@ -23,6 +23,7 @@
 
 #include "treaty_builder.h"
 #include "ifiction.h"
+#include "babel.h"
 #include "md5.h"
 #include "tinfl.h"
 
@@ -1033,7 +1034,7 @@ static void put_colophon(sink *s, const char *originated)
 {
     putz(s, "    <colophon>\n"
             "      <generator>Babel</generator>\n"
-            "      <generatorversion>" TREATY_VERSION "</generatorversion>\n"
+            "      <generatorversion>" BABEL_VERSION "</generatorversion>\n"
             "      <originated>");
     putz(s, originated && *originated ? originated : QUEST_SYNTH_ORIGINATED);
     putz(s, "</originated>\n"
