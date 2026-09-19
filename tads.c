@@ -18,6 +18,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "tads.h"
+#include "babel.h"
 #include "md5.h"
 
 #define ASSERT_OUTPUT_SIZE(x) \
@@ -846,7 +847,7 @@ static int32 synth_ifiction(valinfo *vals, int tads_version,
         "  <story>\n"
         "    <colophon>\n"
         "     <generator>Babel</generator>\n"
-        "     <generatorversion>" TREATY_VERSION "</generatorversion>\n"
+        "     <generatorversion>" BABEL_VERSION "</generatorversion>\n"
         "      <originated>2006-04-14</originated>\n"
         "     </colophon>\n"
         "    <identification>\n");
