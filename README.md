@@ -1,4 +1,4 @@
-## Version 0.7, Treaty of Babel Revision 12
+## Version 0.75, Treaty of Babel Revision 13
 
 This is the source code for `babel`, the [Treaty of Babel][babel] analysis tool. `Babel` performs all the fundamental operations for dealing with the features offered by the treaty, and serves as a flexible multi-tool for analyzing and working with treaty-compliant files.
 
